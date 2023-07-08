@@ -1,0 +1,20 @@
+database:
+  host: $DB_HOST
+  port: $DB_PORT
+  user: $DB_USER
+  passwd: $DB_PASSWD
+  name: $DB_NAME
+
+  echo: $DB_ECHO|False
+
+  pool:
+    size: $DB_POOL_SIZE|10
+    recycle: $DB_POOL_RECYCLE|False
+    timeout: $DB_POOL_TIMEOUT|60
+
+
+  session:
+    auto_commit: $DB_SESSION_AUTO_COMMIT|False
+    auto_flush: $DB_SESSION_AUTOFLUSH|False
+    expire_on_commit: $DB_SESSION_EXPIRE_ON_COMMIT|True
+

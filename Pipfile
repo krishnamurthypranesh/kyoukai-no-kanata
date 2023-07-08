@@ -9,7 +9,10 @@ sqlalchemy = "*"
 alembic = "*"
 uvicorn = "*"
 gunicorn = "*"
-pydantic = "*"
+envyaml = "*"
+pydantic = {version = "==1.10.0", extras = ["dotenv"]}
+psycopg2-binary = "*"
+python-json-logger = "*"
 
 [dev-packages]
 

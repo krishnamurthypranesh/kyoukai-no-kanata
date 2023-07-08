@@ -1,0 +1,59 @@
+from datetime import timedelta
+import logging.config
+import os
+from typing import List
+
+import envyaml
+from pydantic import BaseSettings
+import sqlalchemy
+from sqlalchemy.engine import Engine
+from sqlalchemy.orm import sessionmaker
+import yaml
+
+from app import constants
+
+yml_conf = os.environ.get("APP_CONFIG_YAML", "./config.yml")
+env_file = os.environ.get("ENV_FILE", ".env")
+
+ROOTCONFIG = envyaml.EnvYAML(yml_conf)
+
+
+# APPLICATION CONFIG
+class AppConfig(BaseSettings):
+    environment: str
+
+    class Config:
+        env_file = env_file
+        env_file_encoding = "utf-8"
+        case_sensitive = False
+        env_prefix = "app_"
+
+__APP_CONFIG = AppConfig()
+
+
+def get_app_config():
+    return __APP_CONFIG
+
+
+class DatabaseConfig(BaseSettings):
+    # connection related settings
+    host: str
+    name: str
+    user: str
+    passwd: str
+    port: int
+
+
+    class Config:
+        env_file = env_file
+        env_file_encoding = "utf-8"
+        case_sensitive = False
+        env_prefix = "db_"
+
+
+__DB_CONFIG = DatabaseConfig()
+
+
+def get_db_config():
+    return __DB_CONFIG
+

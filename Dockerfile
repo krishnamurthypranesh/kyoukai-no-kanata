@@ -1,4 +1,4 @@
-FROM alpine:3.18.2
+FROM public.ecr.aws/docker/library/alpine:3.18.2
 
 # setup python
 ENV PYTHONUNBUFFERED=1
