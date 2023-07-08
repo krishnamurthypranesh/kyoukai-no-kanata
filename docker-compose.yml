@@ -1,0 +1,48 @@
+version: "3.8"
+
+services: 
+  app:
+    networks:
+      - kyoukai-no-kanta
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: backend
+    env_file: .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./:/code/"
+    depends_on:
+      - database
+      - httpbin
+
+  database:
+    networks:
+      - kyoukai-no-kanta
+    container_name: db
+    image: bitnami/postgresql:14
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-painted-porch:/data/db
+    environment:
+      - POSTGRESQL_USERNAME=knk
+      - POSTGRESQL_PASSWORD=daisy1234
+      - POSTGRESQL_DATABASE=knk
+
+  httpbin:
+    networks:
+      - kyoukai-no-kanta
+    container_name: httpbin
+    image: kennethreitz/httpbin
+    ports:
+      - "8001:80"
+    env_file: .env
+
+
+volumes:
+  postgres-painted-porch:
+
+networks:
+  kyoukai-no-kanta:
