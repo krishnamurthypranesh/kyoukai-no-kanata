@@ -13,7 +13,7 @@ class RequestReceived(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     gid = Column(CHAR(50), unique=True, index=True)
-    request = Column(JSON, nullable=False)
+    request = Column(JSON, nullable=False, comment="request body with headers")
     response = Column(JSON, nullable=False)
     created_at = Column(DateTime(timezone=True))
     updated_at = Column(DateTime(timezone=True))

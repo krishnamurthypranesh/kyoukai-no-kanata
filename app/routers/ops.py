@@ -6,6 +6,8 @@ from sqlalchemy.orm import Session
 
 from app.database import get_db
 from app.models import RequestReceived
+from app.schema import DoOpRequest, ListOpsRequest
+from app.services import OpsService
 
 
 OpsRouter = APIRouter(prefix="/v1/ops")
@@ -34,6 +36,12 @@ def get_ops(
 
 
 @OpsRouter.post("")
-def do_op():
+def do_op(
+    request: DoOpRequest,
+    db: Session = Depends(get_db),
+):
+    # make request to generate uuid
+    # save the entry in the database
+    # return the uuid
     return {"hello": "world"}
 
