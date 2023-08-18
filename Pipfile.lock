@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e6ed464aa273e3619a9170261f744106b5f92783ba9c6386618f394cd81f4c9c"
+            "sha256": "31e74b02078d056911f4ce3aca29de7c906d1a66486dc0002e7b7392f9198b8d"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -436,6 +436,12 @@
             "index": "pypi",
             "version": "==1.10.0"
         },
+        "python-baseconv": {
+            "hashes": [
+                "sha256:0539f8bd0464013b05ad62e0a1673f0ac9086c76b43ebf9f833053527cd9931b"
+            ],
+            "version": "==1.2.2"
+        },
         "python-dotenv": {
             "hashes": [
                 "sha256:a8df96034aae6d2d50a4ebe8216326c61c3eb64836776504fcca410e5937a3ba",
@@ -567,6 +573,13 @@
             ],
             "markers": "python_version >= '3.7'",
             "version": "==0.27.0"
+        },
+        "svix-ksuid": {
+            "hashes": [
+                "sha256:beb95bd6284bdbd526834e233846653d2bd26eb162b3233513d8f2c853c78964"
+            ],
+            "index": "pypi",
+            "version": "==0.6.2"
         },
         "typing-extensions": {
             "hashes": [
