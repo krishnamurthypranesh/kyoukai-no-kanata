@@ -1,3 +1,5 @@
+import requests
+
 from app.clients.base import BaseClient
 
 class HttpbinClient(BaseClient):
