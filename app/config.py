@@ -21,6 +21,7 @@ ROOTCONFIG = envyaml.EnvYAML(yml_conf)
 # APPLICATION CONFIG
 class AppConfig(BaseSettings):
     environment: str
+    httpbin_url: str
 
     class Config:
         env_file = env_file

@@ -29,6 +29,7 @@ class TestDoOp:
         self.mock_client.get.return_value.json.return_value = {"uuid": gid}
         response = client.post(
             "/v1/ops",
+            json={"key": "key", "value": "value"},
         )
 
         assert response is not None

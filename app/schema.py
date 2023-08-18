@@ -30,7 +30,7 @@ class DoOpServiceParams(CustomBase):
 
 
 class DoOpServiceResponse(CustomBase):
-    pass
+    uuid: str
 
 
 class ListOpsServiceParams(CustomBase):

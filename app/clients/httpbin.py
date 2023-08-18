@@ -10,4 +10,3 @@ class HttpbinClient(BaseClient):
         response = requests.get(f"{self.url}/uuid")
 
         return response.json()["uuid"]
-
