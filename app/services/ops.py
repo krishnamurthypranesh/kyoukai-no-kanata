@@ -34,8 +34,22 @@ class OpsService(BaseService):
         return DoOpServiceResponse(uuid=uuid)
 
     def list_ops(self, params: ListOpsServiceParams) -> ListOpsServiceResponse:
-        # query the database to list the records
-        # return the list
-        pass
+        records = RequestReceivedRepo().get_all(db=self.db)
 
+        response = ListOpsServiceResponse(
+            count=len(records),
+            records=[],
+            next="",
+            prev="",
+        )
 
+        for r in records:
+            response.records.append({
+                "id": r.gid.strip(),
+                "request": r.request,
+                "response": r.response,
+                "created_at": r.created_at,
+                "updated_at": r.updated_at,
+            })
+
+        return response

@@ -8,7 +8,7 @@ from app.clients import HttpbinClient
 from app.config import get_app_config
 from app.database import get_db
 from app.models import RequestReceived
-from app.schema import DoOpRequest, ListOpsRequest, DoOpServiceParams
+from app.schema import DoOpRequest, ListOpsRequest, ListOpsResponse, DoOpServiceParams
 from app.services import OpsService
 
 
@@ -20,21 +20,18 @@ logger = logging.getLogger(__name__)
 def get_ops(
     db: Session = Depends(get_db),
 ):
-    records = db.query(RequestReceived).all()
-    logger.info(records)
+    app_config = get_app_config()
+    httpbin_client = HttpbinClient(app_config.httpbin_url)
 
-    response = []
+    svc = OpsService(db=db, client=httpbin_client)
+    out = svc.list_ops(params=DoOpServiceParams())
 
-    for r in records:
-        response.append({
-            "id": r.gid,
-            "request": r.request,
-            "response": r.response,
-            "created_at": r.created_at,
-            "updated_at": r.updated_at,
-        })
-
-    return response
+    return ListOpsResponse(
+        count=out.count,
+        records=out.records,
+        next=out.next,
+        prev=out.prev,
+    )
 
 
 @OpsRouter.post("")

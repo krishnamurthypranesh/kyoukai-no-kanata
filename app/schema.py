@@ -1,4 +1,4 @@
-from typing import List
+from typing import Dict, List
 
 from pydantic import BaseModel
 
@@ -22,7 +22,10 @@ class ListOpsRequest(CustomBase):
 
 
 class ListOpsResponse(CustomBase):
-    pass
+    count: int
+    records: List[Dict]
+    next: str
+    prev: str
 
 
 class DoOpServiceParams(CustomBase):
